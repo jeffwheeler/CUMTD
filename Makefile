@@ -11,13 +11,14 @@ PACKAGE      = palm-package
 INSTALL      = palm-install
 INSTALLFLAGS = -d $(DEVICE)
 LAUNCH       = palm-launch
+LOG          = palm-log
 LAUNCHFLAGS  = $(INSTALLFLAGS)
 
 default: package
 
 package: $(PACKAGEFILE)
 
-install: package emulator
+install: package
 	$(INSTALL) $(INSTALLFLAGS) $(PACKAGEFILE)
 
 remove:
@@ -25,6 +26,12 @@ remove:
 
 launch: install
 	$(LAUNCH) $(LAUNCHFLAGS) $(APPNAME)
+
+log: launch
+	$(LOG) -f $(APPNAME)
+
+$(PACKAGEFILE): appinfo.json app/views/*/*.html app/assistants/*.js stylesheets/*.css
+	$(PACKAGE) $(PACKAGEFLAGS) .
 
 appinfo.json: appinfo.json.m4 Makefile
 	$(M4) $(M4FLAGS) -DVERSION=$(VERSION) $< > $@
