@@ -1,6 +1,6 @@
 {
 	"id": "com.jeffwheeler.cumtd",
-	"version": "0.0.12",
+	"version": VERSION,
 	"vendor": "Jeff Wheeler",
 	"type": "web",
 	"main": "index.html",
