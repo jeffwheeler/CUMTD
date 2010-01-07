@@ -1,0 +1,27 @@
+[
+    {"source": "app/assistants/stage-assistant.js"},
+    {
+        "scenes": "stops",
+        "source": "app/assistants/stops-assistant.js"
+    },
+    {
+        "scenes": "example",
+        "source": "app/assistants/example-assistant.js"
+    },
+    {
+        "scenes": "stop-detail",
+        "source": "app/assistants/stop-detail-assistant.js"
+    },
+    {
+        "scenes": "stop-add",
+        "source": "app/assistants/stop-add-assistant.js"
+    },
+    {
+        "scenes": "about",
+        "source": "app/assistants/about-assistant.js"
+    },
+    {
+        "scenes": "preferences",
+        "source": "app/assistants/preferences-assistant.js"
+    }
+]
