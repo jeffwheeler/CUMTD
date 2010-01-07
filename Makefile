@@ -34,5 +34,5 @@ $(PACKAGEFILE): appinfo.json app/views/*/*.html app/assistants/*.js stylesheets/
 	$(PACKAGE) $(PACKAGEFLAGS) .
 
 appinfo.json: appinfo.json.m4 Makefile
-	$(M4) $(M4FLAGS) -DVERSION=$(VERSION) $< > $@
+	$(M4) $(M4FLAGS) -DAPPNAME=$(APPNAME) -DVERSION=$(VERSION) $< > $@
 
