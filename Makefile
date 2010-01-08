@@ -30,7 +30,7 @@ launch: install
 log: launch
 	$(LOG) -f $(APPNAME)
 
-$(PACKAGEFILE): appinfo.json app/views/*/*.html app/assistants/*.js stylesheets/*.css
+$(PACKAGEFILE): appinfo.json app/views/*/*.html app/assistants/*.js stylesheets/*.css icon.png
 	$(PACKAGE) $(PACKAGEFLAGS) .
 
 appinfo.json: appinfo.json.m4 Makefile
