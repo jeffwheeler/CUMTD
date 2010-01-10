@@ -79,3 +79,4 @@ StopsAssistant.prototype.reorderInDB = function (event) {
 	this.favoriteStops = xs.flatten();
 	Mojo.Log.error(xs.flatten().toJSON());
 }
+
