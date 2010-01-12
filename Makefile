@@ -26,7 +26,7 @@ remove:
 launch: install
 	$(LAUNCH) $(LAUNCHFLAGS) $(APPNAME)
 
-$(PACKAGEFILE): appinfo.json app/*/*/* app/*/* stylesheets/*.css icon.png index.html
+$(PACKAGEFILE): appinfo.json framework_config.json app/*/*/* app/*/* stylesheets/*.css icon.png index.html sources.json
 	$(PACKAGE) $(PACKAGEFLAGS) .
 
 appinfo.json: appinfo.json.m4 Makefile

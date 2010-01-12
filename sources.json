@@ -23,5 +23,6 @@
     {
         "scenes": "preferences",
         "source": "app/assistants/preferences-assistant.js"
-    }
+    },
+    {"source": "app/models/stops.js"}
 ]

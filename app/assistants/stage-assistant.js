@@ -2,6 +2,8 @@ function StageAssistant() {
 }
 
 StageAssistant.prototype.setup = function() {
+    this.stops = new Stops();
+
     cumtdMenuAttr = { omitDefaultItems: true };
     cumtdMenuModel =
         {
@@ -12,49 +14,7 @@ StageAssistant.prototype.setup = function() {
             ]
         };
 
-    this.allStops =[{name:"ARC", ident:"ARC"},
-                    {name:"Champaign Walmart", ident:"WALMART"},
-                    {name:"FAR", ident:"FAR"},
-                    {name:"Grainger Library", ident:"GEL"},
-                    {name:"Green <span class=\"amp\">&amp;</span> Mathews", ident:"GRNMAT"},
-                    {name:"Green <span class=\"amp\">&amp;</span> Wright", ident:"GRNWRT"},
-                    {name:"Gregory at Library", ident:"GRGLIB"},
-                    {name:"Gregory at Mumford Hall", ident:"GRGMUM"},
-                    {name:"Illini Union", ident:"IU"},
-                    {name:"Illini Union Engineering Side", ident:"IUE"},
-                    {name:"Illinois Terminal at Market St.", ident:"ITMKT"},
-                    {name:"ISR", ident:"ISR"},
-                    {name:"Kirby <span class=\"amp\">&amp;</span> Valley Rd.", ident:"KBYVYRD"},
-                    {name:"Krannert Center", ident:"KRANNERT"},
-                    {name:"Lincoln Square (Courthouse)", ident:"LSE"},
-                    {name:"Lincoln Square (Parking Garage)", ident:"LSG"},
-                    {name:"Lot E-14", ident:"E14"},
-                    {name:"Meijer Drive at Meijer", ident: "MEIJER"},
-                    {name:"Neil <span class=\"amp\">&amp;</span> Stadium", ident:"NEILSTDM"},
-                    {name:"PAR", ident:"PAR"},
-                    {name:"Parkland College", ident:"PKLN"},
-                    {name:"Savoy Walmart", ident:"SWALMART"},
-                    {name:"Sunnycrest Mall", ident:"FLSUN"},
-                    {name:"Transit Plaza", ident:"PLAZA"},
-                    {name:"Urbana Meijer", ident:"URBMEIJ"},
-                    {name:"Urbana Walmart", ident:"UWALMART"},
-                    {name:"Willard Airport", ident:"WILLARD"},
-                    {name:"Wright <span class=\"amp\">&amp;</span> Springfield", ident:"WRTSPFLD"}]
-
-    this.defaultFavoriteStops =
-        [{name:"Illini Union", ident:"IU"},
-         {name:"Illini Union Engineering Side", ident:"IUE"}];
-
-    this.db = new Mojo.Depot(
-        {
-            name: "CUMTD",
-            version: 1,
-            replace: false
-        },
-        this.dbConnectSuccess.bind(this)
-    );
-
-    this.controller.pushScene("stops", this.db);
+    this.controller.pushScene("stops", this.stops);
 }
 
 StageAssistant.prototype.handleCommand = function (event) {
@@ -65,21 +25,5 @@ StageAssistant.prototype.handleCommand = function (event) {
             this.controller.pushScene("preferences", this.db);
         }
     }
-}
-
-StageAssistant.prototype.dbConnectSuccess = function () {
-    Mojo.Log.error("connected successfully");
-
-    // Always insert the latest version
-    this.db.add("allStops", this.allStops);
-
-    this.db.get("favoriteStops",
-        (function (value) {
-            if (value == null) {
-                value = this.defaultFavoriteStops;
-                this.db.add("favoriteStops", value);
-            }
-        }).bindAsEventListener(this)
-    );
 }
 
