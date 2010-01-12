@@ -3,7 +3,7 @@
 # decent amount reproducing it; thanks!
 
 APPNAME      = com.jeffwheeler.cumtd
-VERSION      = 1.0.1
+VERSION      = 1.0.2
 DEVICE       = emulator
 PACKAGEFILE  = $(APPNAME)_$(VERSION)_all.ipk
 M4           = m4
@@ -11,7 +11,6 @@ PACKAGE      = palm-package
 INSTALL      = palm-install
 INSTALLFLAGS = -d $(DEVICE)
 LAUNCH       = palm-launch
-LOG          = palm-log
 LAUNCHFLAGS  = $(INSTALLFLAGS)
 
 default: package
@@ -27,10 +26,7 @@ remove:
 launch: install
 	$(LAUNCH) $(LAUNCHFLAGS) $(APPNAME)
 
-log: launch
-	$(LOG) -f $(APPNAME)
-
-$(PACKAGEFILE): appinfo.json app/views/*/*.html app/assistants/*.js stylesheets/*.css icon.png
+$(PACKAGEFILE): appinfo.json app/*/*/* app/*/* stylesheets/*.css icon.png
 	$(PACKAGE) $(PACKAGEFLAGS) .
 
 appinfo.json: appinfo.json.m4 Makefile
