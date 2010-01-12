@@ -70,14 +70,9 @@ StageAssistant.prototype.handleCommand = function (event) {
 
 StageAssistant.prototype.dbConnectSuccess = function () {
     Mojo.Log.error("connected successfully");
-    this.db.get("allStops",
-        (function (value) {
-            if (value == null) {
-                value = this.allStops;
-                this.db.add("allStops", value);
-            }
-        }).bindAsEventListener(this)
-    );
+
+    // Always insert the latest version
+    this.db.add("allStops", this.allStops);
 
     this.db.get("favoriteStops",
         (function (value) {
@@ -85,7 +80,7 @@ StageAssistant.prototype.dbConnectSuccess = function () {
                 value = this.defaultFavoriteStops;
                 this.db.add("favoriteStops", value);
             }
-            $("stopList").mojo.noticeUpdatedItems(0, value);
+            // $("stopList").mojo.noticeUpdatedItems(0, value);
             // this.favoriteStops = value;
         }).bindAsEventListener(this)
     );
