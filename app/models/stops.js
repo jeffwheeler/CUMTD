@@ -36,6 +36,7 @@ var Stops = Class.create({
         for (var i=0; i<this.allStops.length; i++) {
             this.allStops[i].name = this.allStops[i].name.gsub("&",
                 "<span class=\"amp\">&amp;</span>");
+
             if (this.allStops[i].defaultStop) {
                 this.favoriteStops.push(this.allStops[i]);
             }
@@ -68,11 +69,21 @@ var Stops = Class.create({
         this.loadFavoriteStops(
             (function(favorites) {
                 var nonFavs = [];
-                for (var i=0; i<this.allStops.length; i++) {
-                    if (favorites.indexOf(this.allStops[i]) < 0) {
+
+                var allStopsLength = this.allStops.length;
+                for (var i=0; i<allStopsLength; i++) {
+                    var inFavs = false;
+
+                    var favoritesLength = favorites.length;
+                    for (var j=0; j<favoritesLength; j++) {
+                        inFavs |= (favorites[j].ident == this.allStops[i].ident);
+                    }
+
+                    if (!inFavs) {
                         nonFavs.push(this.allStops[i]);
                     }
                 }
+
                 onLoad(nonFavs);
             }).bindAsEventListener(this)
         );

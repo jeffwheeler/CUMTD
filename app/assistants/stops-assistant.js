@@ -56,11 +56,9 @@ StopsAssistant.prototype = {
     },
 
     removeStop: function(event) {
-        Mojo.Log.info("Removing stop");
+        this.stops.favoriteStops = this.stops.favoriteStops.without(event.item);
 
-        var deleteIndex = this.stops.favoriteStops.indexOf(event.item);
-        this.stops.favoriteStops.splice(deleteIndex, 1);
-
+        Mojo.Log.info("Removing stop", Object.toJSON(this.stops.favoriteStops));
         this.stops.save();
     },
 
@@ -69,7 +67,6 @@ StopsAssistant.prototype = {
         this.stops.favoriteStops.splice(event.toIndex, 0, event.item);
 
         Mojo.Log.info("Reorder", Object.toJSON(this.stops.favoriteStops));
-
         this.stops.save();
     }
 }
