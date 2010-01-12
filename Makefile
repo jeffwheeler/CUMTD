@@ -3,7 +3,7 @@
 # decent amount reproducing it; thanks!
 
 APPNAME      = com.jeffwheeler.cumtd
-VERSION      = 1.0.0
+VERSION      = 1.0.1
 DEVICE       = emulator
 PACKAGEFILE  = $(APPNAME)_$(VERSION)_all.ipk
 M4           = m4
