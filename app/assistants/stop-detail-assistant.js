@@ -15,7 +15,7 @@ StopDetailAssistant.prototype.setup = function () {
     this.controller.setupWidget("busesList",
         this.attributes = {
             listTemplate: "lists/list",
-            itemTemplate: "lists/item",
+            itemTemplate: "stop-detail/bus-item",
             reorderable: false,
             swipeToDelete: false,
         },
