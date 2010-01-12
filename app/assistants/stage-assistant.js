@@ -25,6 +25,7 @@ StageAssistant.prototype.setup = function() {
                     {name:"Illini Union Engineering Side", ident:"IUE"},
                     {name:"Illinois Terminal at Market St.", ident:"ITMKT"},
                     {name:"ISR", ident:"ISR"},
+                    {name:"Kirby and Valley Rd.", ident:"KBYVYRD"},
                     {name:"Krannert Center", ident:"KRANNERT"},
                     {name:"Lincoln Square (Courthouse)", ident:"LSE"},
                     {name:"Lincoln Square (Parking Garage)", ident:"LSG"},
