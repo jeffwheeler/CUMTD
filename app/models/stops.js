@@ -14,16 +14,16 @@ var Stops = Class.create({
     loadFavoriteStops: function(onLoad) {
         this.db.get("favoriteStops",
             (function(stops) {
+                // Reset database if the first row doesn't look like the current
+                // database version.
+                if (stops != null && stops.length > 0 && stops[0].numeric == null) { 
+                    Mojo.Log.info("Removing the DB");
+                    this.db.removeAll();
+                    stops = null;
+                }
+
                 if (stops == null) {
                     stops = [];
-
-                    var allStopsLength = this.allStops.length;
-                    for (var i=0; i<allStopsLength; i++) {
-                        if (this.allStops[i].defaultStop) {
-                            stops.push(this.allStops[i]);
-                        }
-                    }
-
                     this.db.add("favoriteStops", stops);
                 }
 
