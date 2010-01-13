@@ -38,7 +38,6 @@ StopsAssistant.prototype = {
     activate: function() {
         this.stops.loadFavoriteStops(
             (function (stops) {
-                Mojo.Log.info("Stops", Object.toJSON(stops));
                 this.favoritesModel.items = stops;
                 this.controller.modelChanged(this.favoritesModel);
             }).bindAsEventListener(this)
