@@ -41,14 +41,33 @@ StopAddAssistant.prototype = {
     },
 
     filterFunction: function (filterString, listWidget, offset, count) {
+        var lowerFilter = filterString.toLowerCase();
         var stops = [];
-        if (filterString == "") {
+
+        if (lowerFilter == "") {
             stops = this.availableStops;
         } else {
-            stops = this.availableStops.filter(function (stop) {
-                return (stop.name.toLowerCase().include(filterString.toLowerCase())
-                     || stop.numeric.toLowerCase().include(filterString.toLowerCase()))
-            });
+            var availableStopsLength = this.availableStops.length;
+            for (var i=0; i<availableStopsLength; i++) {
+                var stop = this.availableStops[i];
+
+                if (stop.name.toLowerCase() == lowerFilter) {
+                    stops.splice(0, 1, stop);
+                } else {
+                    var words = lowerFilter.split(" ");
+
+                    var matches = true;
+                    for (var j=0; j<words.length; j++) {
+                        var word = words[j];
+                        matches &= (stop.name.toLowerCase().include(word)
+                                 || stop.numeric.toLowerCase().include(word))
+                    }
+
+                    if (matches) {
+                        stops.push(stop);
+                    }
+                }
+            }
         }
 
         listWidget.mojo.noticeUpdatedItems(offset, stops);
