@@ -1,6 +1,28 @@
 .amp {
     color: #999;
-    font-family: serif;
-    font-size: 0.9em;
+}
+
+.stop-style {
+}
+
+.stop-style .title {
+    line-height: 0.9em;
+    padding: auto 3px !important;
+}
+
+.stop-style .title span {
+    color: #666;
+    font-size: 0.7em;
+    margin: 0;
+}
+
+.bus-number {
+    color: #333;
+    display: block;
+    float: left;
+    font-size: 0.8em;
+    margin: 4px 8px 3px 3px;
+    text-align: right;
+    width: 45px;
 }
 
