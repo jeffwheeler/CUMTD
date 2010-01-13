@@ -1,8 +1,9 @@
-function PreferencesAssistant(db) {
-    this.db = db;
+function PreferencesAssistant(stops) {
+    this.stops = stops;
 }
 
 PreferencesAssistant.prototype.setup = function() {
+    // Setup reset button
     this.controller.setupWidget("resetButton",
         {},
         { label: "Reset Database" }
@@ -14,6 +15,6 @@ PreferencesAssistant.prototype.setup = function() {
 
 //Database management
 PreferencesAssistant.prototype.resetDB = function () {
-    this.db.removeAll();
+    this.stops.reset();
 }
 
