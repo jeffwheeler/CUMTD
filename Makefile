@@ -26,8 +26,11 @@ remove:
 launch: install
 	$(LAUNCH) $(LAUNCHFLAGS) $(APPNAME)
 
-$(PACKAGEFILE): appinfo.json framework_config.json app/*/*/* app/*/* stylesheets/*.css icon.png index.html sources.json
+$(PACKAGEFILE): appinfo.json framework_config.json app/*/*/* app/*/* stylesheets/*.css icon.png index.html sources.json stops.js
 	$(PACKAGE) $(PACKAGEFLAGS) .
+
+stops.js: dump/stops.html scripts/format_stops.py
+	python scripts/format_stops.py < $< > $@
 
 appinfo.json: appinfo.json.m4 Makefile
 	$(M4) $(M4FLAGS) -DAPPNAME=$(APPNAME) -DVERSION=$(VERSION) $< > $@
