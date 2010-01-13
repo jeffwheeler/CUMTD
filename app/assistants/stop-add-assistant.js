@@ -10,7 +10,7 @@ StopAddAssistant.prototype = {
         this.controller.setupWidget("filteredStopsList",
             {
                 listTemplate: "lists/list",
-                itemTemplate: "lists/item",
+                itemTemplate: "lists/item-with-numeric",
                 filterFunction: this.filterFunction.bind(this),
                 lookahead: 1000
             },
