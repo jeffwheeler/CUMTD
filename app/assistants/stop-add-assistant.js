@@ -11,7 +11,8 @@ StopAddAssistant.prototype = {
             {
                 listTemplate: "lists/list",
                 itemTemplate: "lists/item",
-                filterFunction: this.filterFunction.bind(this)
+                filterFunction: this.filterFunction.bind(this),
+                lookahead: 1000
             },
             { disabled: false }
         );
@@ -45,7 +46,8 @@ StopAddAssistant.prototype = {
             stops = this.availableStops;
         } else {
             stops = this.availableStops.filter(function (stop) {
-                return stop.name.toLowerCase().include(filterString.toLowerCase());
+                return (stop.name.toLowerCase().include(filterString.toLowerCase())
+                     || stop.numeric.toLowerCase().include(filterString.toLowerCase()))
             });
         }
 
