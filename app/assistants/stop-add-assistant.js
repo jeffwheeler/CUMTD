@@ -59,8 +59,9 @@ StopAddAssistant.prototype = {
                     var matches = true;
                     for (var j=0; j<words.length; j++) {
                         var word = words[j];
-                        matches &= (stop.name.toLowerCase().include(word)
-                                 || stop.numeric.toLowerCase().include(word))
+                        matches &= word == "and"
+                                || stop.name.toLowerCase().include(word)
+                                || stop.numeric.toLowerCase().include(word)
                     }
 
                     if (matches) {
