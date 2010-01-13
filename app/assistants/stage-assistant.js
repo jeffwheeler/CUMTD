@@ -22,7 +22,7 @@ StageAssistant.prototype.handleCommand = function (event) {
         if (event.command == "do-about") {
             this.controller.pushScene("about");
         } else if (event.command == "do-prefs") {
-            this.controller.pushScene("preferences", this.db);
+            this.controller.pushScene("preferences", this.stops);
         }
     }
 }
